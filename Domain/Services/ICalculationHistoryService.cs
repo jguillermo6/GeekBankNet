@@ -10,5 +10,6 @@ namespace Domain.Services
     public interface ICalculationHistoryService
     {
         CalculationHistoryContract Insert(CalculationHistoryContract contract);
+        IEnumerable<CalculationHistoryContract> GetAll();
     }
 }

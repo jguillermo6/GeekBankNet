@@ -25,5 +25,10 @@ namespace Infrastructure.Repositories
             _dbContext.SaveChanges();
             return entity;
         }
+
+        public IQueryable<CalculationHistoryEntity> GetAll()
+        {
+            return _dbSet;
+        }
     }
 }

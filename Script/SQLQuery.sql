@@ -1,0 +1,11 @@
+CREATE DATABASE GeekBank
+GO
+USE GeekBank
+GO
+	CREATE TABLE CalculationHistory(
+	Id INT IDENTITY PRIMARY KEY NOT NULL,	
+	FirstValue INT NOT NULL,
+	SecondValue INT NOT NULL,
+	Result INT NOT NULL
+)
+	

@@ -26,5 +26,11 @@ namespace Domain.Services
             CalculationHistoryEntity response = _repository.Insert(entity);
             return _mapper.Map<CalculationHistoryContract>(response);
         }
+
+        public IEnumerable<CalculationHistoryContract> GetAll()
+        {
+            IQueryable<CalculationHistoryEntity> response = _repository.GetAll();
+            return _mapper.Map<IEnumerable<CalculationHistoryContract>>(response);
+        }
     }
 }

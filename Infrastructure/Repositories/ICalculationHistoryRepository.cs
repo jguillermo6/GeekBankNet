@@ -10,5 +10,6 @@ namespace Infrastructure.Repositories
     public interface ICalculationHistoryRepository
     {
         CalculationHistoryEntity Insert(CalculationHistoryEntity entity);
+        IQueryable<CalculationHistoryEntity> GetAll();
     }
 }

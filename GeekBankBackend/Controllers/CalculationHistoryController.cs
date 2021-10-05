@@ -13,33 +13,29 @@ namespace GeekBankBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CalculationController : ControllerBase
+    public class CalculationHistoryController : ControllerBase
     {
-        protected readonly ICalculationService _service;
-
-        public CalculationController(ICalculationService service)
+        protected readonly ICalculationHistoryService _service;
+        public CalculationHistoryController(ICalculationHistoryService service)
         {
             _service = service;
         }
-       
-
-        [HttpPost]
+        
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("[action]")]
-        public ActionResult<CalculationResultContract> Post([FromBody] CalculationContract contract)
+        public ActionResult<IEnumerable<CalculationHistoryContract>> Get()
         {
             try
             {
-                CalculationResultContract response = _service.SumIsFibonacciSequence(contract);
-                return Ok(response);
+                return Ok(_service.GetAll());
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
-            
+            }            
         }
     }
 }

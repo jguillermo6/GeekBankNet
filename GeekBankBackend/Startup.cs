@@ -33,6 +33,10 @@ namespace GeekBankBackend
             AutoMapperConfiguration.ExecuteConfigurations(services);
             DependencyInjectionConfiguration.ExecuteConfigurations(services);
 
+            services.AddCors(p => {
+                p.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GeekBankBackend", Version = "v1" });
@@ -50,6 +54,8 @@ namespace GeekBankBackend
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseRouting();
 
